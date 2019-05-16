@@ -1,1 +1,22 @@
 // Arduino
+math.h
+
+//logic for binary computer (Jake F)
+int number = "number recognized by the Kine"
+int div = number
+
+if(number >= pow(2,8)){
+print("Invalid Input);
+}
+
+for(int n = 8; n>0; n--) {
+if(div > pow(2, n-1)){
+//light up Pin n
+print("1");
+div = div % pow(2, n-1);
+}
+else {
+print("0");
+}
+}
+//someone please test logic and syntax
