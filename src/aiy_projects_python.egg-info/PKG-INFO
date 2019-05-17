@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: aiy-projects-python
+Version: 1.2
+Summary: AIY Python API
+Home-page: https://aiyprojects.withgoogle.com/
+Author: AIY Team
+Author-email: support-aiyprojects@google.com
+License: Apache 2
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.5.3
