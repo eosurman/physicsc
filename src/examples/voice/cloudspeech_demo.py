@@ -13,7 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""A demo of the Google CloudSpeech recognizer."""
+# AP Physics C Lightbulb Project
+
 import argparse
 import locale
 import logging
@@ -21,24 +22,31 @@ import logging
 from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
 
+# Defining variables
 number = 0
-bucketAmt = 64
+bucketAmt = 256
 stringBucket = []
+setString = 'set counter '
+showString = 'show counter'
 
+# Pre set all the text that it can detect. This limits the set number to be limited to 256
 def get_hints(language_code):
     if language_code.startswith('en_'):
         for i in range(bucketAmt): 
             toString = str(i)
-            stringBucket.append('the number is '+toString)
+            stringBucket.append(setString+toString)
         return stringBucket
     return None
 
+# Internalized
 def locale_language():
     language, _ = locale.getdefaultlocale()
     return language
 
+# Magic Code
 def main():
     logging.basicConfig(level=logging.DEBUG)
+
 
     parser = argparse.ArgumentParser(description='Assistant service example.')
     parser.add_argument('--language', default=locale_language())
@@ -50,7 +58,8 @@ def main():
     with Board() as board:
         while True:
             if hints:
-                logging.info('Say something, e.g. %s.' % ', '.join(hints))
+                #logging.info('Say something, e.g. %s.' % ', '.join(hints))
+                logging.info('say something')
             else:
                 logging.info('Say something.')
             text = client.recognize(language_code=args.language,
@@ -61,11 +70,13 @@ def main():
 
             logging.info('You said: "%s"' % text)
             text = text.lower()
+            
+# Using for-loop, the program gives out only the resulting number
             for i in range(bucketAmt):
                 toString = str(i)
-                if 'the number is '+toString in text:
+                if setString+toString in text:
                     number = i
-            if 'what is the number' in text:
+            if showString in text:
                 print(number)
             
 if __name__ == '__main__':
