@@ -9,12 +9,8 @@ def main():
 	for i in range(256):
         toString = str(i)
     	recognizer.expect_phrase('Set '+toString)
-	for i in range(256):
-		toString = str(i)
 	    recognizer.expect_phrase('Add '+toString)
-	for i in range(256):
-		toString = str(i)
-		recognizer.expect_phrase('Subtract' + toString)
+		recognizer.expect_phrase('Subtract ' + toString)
 
     aiy.audio.get_recorder().start()
 
@@ -30,13 +26,10 @@ def main():
 				toString = str(i)
 				if 'Set '+toString in text:
 				    number = i
-			for i in range(256):
-				toString = str(i)
 				if 'Add '+toString in text:
-					number += i
-			for i in range(256):
+				    number += i
 				if 'Subtract '+toString in text:
-					number -= i
+				    number -= i
         print number
 
 if __name__ == '__main__':
