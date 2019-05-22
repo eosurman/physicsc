@@ -1,14 +1,26 @@
-import aiy.audio
-import aiy.cloudspeech
-import aiy.voicehat
- 
+import argparse
+import locale
+import logging
+
+from aiy.board import Board, Led
+from aiy.cloudspeech import CloudSpeechClient
+
 number=0
+
+ef get_hints(language_code):
+    if language_code.startswith('en_'):
+        return ('turn on the light',
+                'turn off the light',
+                'blink the light',
+                'goodbye')
+    return None
 def main():
-    recognizer = aiy.cloudspeech.get_recognizer()
+    recognizer = CloudSpeechClient.recognize(self)
     recognizer.expect_phrase('The number is 1.')
     recognizer.expect_phrase('The number is 2.')
     recognizer.expect_phrase('The number is 3.')
     recognizer.expect_phrase('What is the number?')
+
 
     aiy.audio.get_recorder().start()
  
@@ -27,9 +39,9 @@ def main():
                 number = 2
             elif 'The number is 3.' in text:
                 number = 3
-            elif 'goodbye' in text:
-           print('The number is "'number '"')
-                break
+            elif 'What is the number?' in text:
+                print(number)
+        break
  
  
 if __name__ == '__main__':

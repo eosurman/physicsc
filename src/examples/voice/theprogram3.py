@@ -21,16 +21,14 @@ import logging
 from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
 
-number = 0
-bucketAmt = 64
-stringBucket = []
+number=0
 
 def get_hints(language_code):
     if language_code.startswith('en_'):
-        for i in range(bucketAmt): 
-            toString = str(i)
-            stringBucket.append('the number is '+toString)
-        return stringBucket
+        return ('The number is 1.',
+                'The number is 2.',
+                'The number is 3.',
+                'What is the number?')
     return None
 
 def locale_language():
@@ -61,13 +59,16 @@ def main():
 
             logging.info('You said: "%s"' % text)
             text = text.lower()
-            for i in range(bucketAmt):
-                toString = str(i)
-                if 'the number is '+toString in text:
-                    number = i
-            if 'what is the number' in text:
+            if 'The number is 1' in text:
+                number=1
+            elif 'The number is 2' in text:
+                number=2
+            elif 'The number is 3' in text:
+                number=3
+            elif 'What is the number' in text:
                 print(number)
-            
+            elif 'goodbye' in text:
+                break
+
 if __name__ == '__main__':
     main()
-

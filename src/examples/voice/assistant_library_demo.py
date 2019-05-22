@@ -48,6 +48,7 @@ def process_event(led, event):
           or event.type == EventType.ON_CONVERSATION_TURN_TIMEOUT
           or event.type == EventType.ON_NO_RESPONSE):
         led.state = Led.BEACON_DARK
+        print(DialogStateOut.supplemental_display_text)
 
     elif event.type == EventType.ON_ASSISTANT_ERROR and event.args and event.args['is_fatal']:
         sys.exit(1)

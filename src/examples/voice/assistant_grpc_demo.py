@@ -24,8 +24,6 @@ import sys
 from aiy.assistant.grpc import AssistantServiceClientWithLed
 from aiy.board import Board
 
-string text = ""
-
 def volume(string):
     value = int(string)
     if value < 0 or value > 100:
@@ -54,8 +52,8 @@ def main():
             board.button.wait_for_press()
             logging.info('Conversation started!')
             assistant.conversation()
-			text = assistant.DialogStateOut.supplemental_display_text()
-			aiy.audio.say(text)
+            text = assistant.DialogStateOut.supplemental_display_text()
+            aiy.audio.say(text + 'test test')
 
 if __name__ == '__main__':
     main()
