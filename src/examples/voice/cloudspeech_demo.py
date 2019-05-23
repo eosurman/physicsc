@@ -23,7 +23,7 @@ import time
 
 from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
-
+"""
 GPIO.setmode(GPIO.BCM)
             #GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
             #GPIO.setup(12, GP
@@ -39,7 +39,7 @@ GPIO.setup(32, GPIO.OUT, initial=0)
 GPIO.setup(36, GPIO.OUT, initial=0)
 GPIO.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(33, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+"""
 # Defining variables
 number = 0
 bucketAmt = 256
@@ -93,10 +93,10 @@ def main():
             for i in range(bucketAmt):
                 toString = str(i)
                 if setString+toString in text:
-                    number = i
+                    numer = i
             if showString in text:
                 print(number)
-                break
+##                break
             #pi Zero WH
             #python
 
