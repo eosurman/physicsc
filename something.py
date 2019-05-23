@@ -41,7 +41,7 @@ GPIO.setup(3,GPIO.OUT)
 
 x = 0 #counting up for array location
 n = 7 #count down for base 2
-number = 50   # number
+number = 32   # number
 light = [0,0,0,0,0,0,0,0]
 pin = [3, 5, 19, 21, 23, 8, 10, 26]
 
