@@ -18,15 +18,27 @@
 import argparse
 import locale
 import logging
-<<<<<<< HEAD
 import RPi.GPIO as GPIO
-=======
-import RPi.GPIO
->>>>>>> 92a108e493872724e52412c216c0a5c37922642e
 import time
 
 from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
+
+GPIO.setmode(GPIO.BCM)
+            #GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+            #GPIO.setup(12, GP
+            #IO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setwarnings(False)
+GPIO.setup(7, GPIO.OUT, initial=0)
+GPIO.setup(11, GPIO.OUT, initial=0)
+GPIO.setup(13, GPIO.OUT, initial=0)
+GPIO.setup(15, GPIO.OUT, initial=0)
+GPIO.setup(18, GPIO.OUT, initial=0)
+GPIO.setup(22, GPIO.OUT, initial=0)
+GPIO.setup(32, GPIO.OUT, initial=0)
+GPIO.setup(36, GPIO.OUT, initial=0)
+GPIO.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(33, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Defining variables
 number = 0
@@ -84,122 +96,60 @@ def main():
                     number = i
             if showString in text:
                 print(number)
+                break
             #pi Zero WH
             #python
 
             #pi light pin setups
             #GPIO.setmode(GPIO.BOARD)
-            GPIO.setmode(GPIO.BCM)
-            #GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            #GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            GPIO.setwarnings(False)
-            GPIO.setup(3, GPIO.OUT)
-            GPIO.setup(5, GPIO.OUT)
-            GPIO.setup(8, GPIO.OUT)
-            GPIO.setup(10, GPIO.OUT)
-            GPIO.setup(19, GPIO.OUT)
-            GPIO.setup(21, GPIO.OUT)
-            GPIO.setup(23, GPIO.OUT)
-            GPIO.setup(26, GPIO.OUT)
+
 
             #inc and dec buttons
-            input_inc = GPIO.input(11)
-            input_dec = GPIO.input(12)
-            if input_inc == False: 
-               number = number + 1 #increase number for 8 bit
-            if input_dec == False:
-               number = number - 1 #decrease number for 8 bit
-            div = 13
+            #while True:
+                #input_state = GPIO.input(31)
+                #if input_state == False:
+                    #number = number + 1
+                    #time.sleep(0.2)
+                
+            
+            #while True:
+                #input_state = GPIO.input(33)
+                #if input_state == False:
+                    #number = number - 1
+                    #time.sleep(0.2)
+                
+            """
+            #input_inc = GPIO.input(11)
+            #input_dec = GPIO.input(12)
+#if input_inc == False: 
+    #number = number + 1 #increase number for 8 bit
+#if input_dec == False:
+    #number = number - 1 #decrease number for 8 bit
+#div = number
 
             #i'm not sure if this code works...
-            if div >= 2**8:
+if number >= 2**8:
             #if error exists
-               n = 0 #first while loop b/c pins light up twice
-               x = 0 #second while loop to turn on lights and then turn off
-               while n < 2:
-                  while x < 8:
-                     GPIO.output(pin[x], GPIO.HIGH) #turn all lights on
-                     x = x + 1
-                  x = 8
-               while x < 8:
-                  GPIO.output(pin[x], GPIO.LOW) #turn all lights off
-                  n = n + 1
-
-#potential pins
-#NA pin = [3, 8, 11, 15, 18, 19, 23, 26]
-
-            x = 0 #counting up for array location
-            n = 7 #count down for base 2
-#div = 95    testing number
-            light = [0,0,0,0,0,0,0,0] #empty binary array
-            pin = [3, 5, 19, 21, 23, 8, 10, 26] #pin location
-
-            while x < 8: #going through binary digits
-               max = 2 ** (n) #binary base-2
-    #print (max)
-               if number >= max: #if divisible
-                  number = number % max #then save the remainder
-                  light[x] = 1
-                  GPIO.output(light[x], GPIO.HIGH) #if this bit is 1, light will light
-               else:
-                  light[x] = 0
-                  GPIO.output(light[x], GPIO.LOW) #if this bit is 0, light wont light
-               x = x + 1
-               n = n - 1
-            print (light)
-
-
-            
-if __name__ == '__main__':
-    main()
-
-#pi Zero WH
-#python
-
-#pi light pin setups
-GPIO.setmode(GPIO.BOARD)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(3, GPIO.OUT)
-GPIO.setup(5, GPIO.OUT)
-GPIO.setup(8, GPIO.OUT)
-GPIO.setup(10, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(21, GPIO.OUT)
-GPIO.setup(23, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
-
-#inc and dec buttons
-input_inc = GPIO.input(11)
-input_dec = GPIO.input(12)
-if input_inc == False: 
-    number = number + 1 #increase number for 8 bit
-if input_dec == False:
-    number = number - 1 #decrease number for 8 bit
-
-#i'm not sure if this code works...
-if div >= 2**8:
-    #if error exists
     n = 0 #first while loop b/c pins light up twice
     x = 0 #second while loop to turn on lights and then turn off
-    while n < 2
-        while x < 8
-            GPIO.output(pin[x], GPIO.HIGH) #turn all lights on
+    while n < 2:
+        while x < 8:
+            GPIO.output(pin[x], 1) #turn all lights on
             x = x + 1
         x = 8
-        while x < 8
-            GPIO.output(pin[x], GPIO.LOW) #turn all lights off
-        n = n + 1
+        while x < 8:
+            GPIO.output(pin[x], 0) #turn all lights off
+            n = n + 1
 
 #potential pins
 #NA pin = [3, 8, 11, 15, 18, 19, 23, 26]
+#pin = [3, 5, 19, 21, 23, 8, 10, 26] #pin location                  
 
 x = 0 #counting up for array location
 n = 7 #count down for base 2
 #div = 95    testing number
 light = [0,0,0,0,0,0,0,0] #empty binary array
-pin = [3, 5, 19, 21, 23, 8, 10, 26] #pin location
+pin = [7, 11, 13, 15, 18, 22, 32, 36] #pin location
 
 while x < 8: #going through binary digits
     max = 2 ** (n) #binary base-2
@@ -207,10 +157,15 @@ while x < 8: #going through binary digits
     if number >= max: #if divisible
         number = number % max #then save the remainder
         light[x] = 1
-        GPIO.output(light[x], GPIO.HIGH) #if this bit is 1, light will light
+        GPIO.output(pin[x], 1) #if this bit is 1, light will light
     else:
         light[x] = 0
-        GPIO.output(light[x], GPIO.LOW) #if this bit is 0, light wont light
+        GPIO.output(pin[x], 0) #if this bit is 0, light wont light
     x = x + 1
     n = n - 1
 print (light)
+"""
+
+            
+if __name__ == '__main__':
+    main()
