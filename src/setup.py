@@ -21,7 +21,7 @@ setup(
         'google-cloud-speech==0.36.0',
         'gpiozero',
         'paho-mqtt',
-        'protobuf==3.6.1',
+        'protobuf==4.25.8',
         'picamera',
         'pillow',
         'RPi.GPIO',
